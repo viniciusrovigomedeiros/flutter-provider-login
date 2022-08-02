@@ -9,7 +9,10 @@ final pessoaController = ChangeNotifierProvider(
 );
 
 class LoginPage extends HookConsumerWidget {
-  const LoginPage({Key? key}) : super(key: key);
+  LoginPage({Key? key}) : super(key: key);
+
+  final TextEditingController _controlerName = TextEditingController();
+  final TextEditingController _controlerIdade = TextEditingController();
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -18,37 +21,42 @@ class LoginPage extends HookConsumerWidget {
       appBar: AppBar(
         title: const Text('Página de login'),
       ),
-      body: Column(
-        children: [
-          const SizedBox(height: 20),
-          CircleAvatar(
-            radius: 100,
-            child: Image.network(pessoaControler.people.imgProfile,
-                fit: BoxFit.contain),
-          ),
-          Column(
-            children: [
-              Text(
-                  'Nome ${pessoaControler.people.nome}, Idade: ${pessoaControler.people.idade}'),
-            ],
-          ),
-          const Padding(
-            padding: EdgeInsets.all(20.0),
-            child: TextField(),
-          ),
-          const Padding(
-            padding: EdgeInsets.all(20.0),
-            child: TextField(),
-          ),
-          ElevatedButton(
-            onPressed: () {
-              Navigator.of(context).push(MaterialPageRoute(
-                builder: ((context) => HomePage()),
-              ));
-            },
-            child: const Text('Cadastrar'),
-          ),
-        ],
+      body: SingleChildScrollView(
+        child: Column(
+          children: [
+            const SizedBox(height: 20),
+            CircleAvatar(
+              radius: 70,
+              child: Image.network(pessoaControler.people.imgProfile,
+                  fit: BoxFit.contain),
+            ),
+            Padding(
+              padding: EdgeInsets.all(20.0),
+              child: TextField(
+                controller: _controlerName,
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.all(20.0),
+              child: TextField(
+                controller: _controlerIdade,
+              ),
+            ),
+            ElevatedButton(
+              onPressed: () {
+                pessoaControler.people.nome = _controlerName.text;
+                pessoaControler.people.idade = int.parse(_controlerIdade.text);
+
+                print(pessoaControler.people.idade);
+
+                Navigator.of(context).push(MaterialPageRoute(
+                  builder: ((context) => HomePage()),
+                ));
+              },
+              child: const Text('Cadastrar'),
+            ),
+          ],
+        ),
       ),
     );
   }
