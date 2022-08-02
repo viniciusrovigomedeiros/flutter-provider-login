@@ -2,13 +2,14 @@ import 'package:flutter/foundation.dart';
 
 import '../entities/peaple_entity.dart';
 
-String img =
-    'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRl8Ea9cyIi_U8y7mgzqX1SitKtppQOzlciXA&usqp=CAU';
-
 class PessoaController extends ChangeNotifier {
-  Pessoa people = Pessoa('Vinícius', 25, img);
+  Pessoa people = Pessoa(
+    'Vinícius',
+    25,
+    'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRl8Ea9cyIi_U8y7mgzqX1SitKtppQOzlciXA&usqp=CAU',
+  );
 
-  void setPessoa(String name, int idade) {
+  void setPessoa(String name, int idade, String img) {
     people.nome = name;
     people.idade = idade;
     people.imgProfile = img;

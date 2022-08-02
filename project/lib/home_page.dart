@@ -10,13 +10,24 @@ class HomePage extends HookConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final pessoaControler = ref.watch(pessoaController);
     return Scaffold(
-      backgroundColor: Colors.amber,
+      backgroundColor: Color.fromARGB(255, 138, 138, 138),
       drawer: Column(
+        crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           CircleAvatar(
-            radius: 50,
-            child: Image.network(pessoaControler.people.imgProfile,
-                fit: BoxFit.contain),
+            radius: 60,
+            child: Center(
+              child: Container(
+                width: 190.0,
+                height: 190.0,
+                decoration: BoxDecoration(
+                    shape: BoxShape.circle,
+                    image: DecorationImage(
+                        fit: BoxFit.fill,
+                        image:
+                            NetworkImage(pessoaControler.people.imgProfile))),
+              ),
+            ),
           ),
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
@@ -74,11 +85,19 @@ class HomePage extends HookConsumerWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             CircleAvatar(
-              radius: 100,
-              child: Image.network(pessoaControler.people.imgProfile,
-                  fit: BoxFit.contain),
+              radius: 120,
+              child: Center(
+                child: Container(
+                  decoration: BoxDecoration(
+                      shape: BoxShape.circle,
+                      image: DecorationImage(
+                          fit: BoxFit.fill,
+                          image:
+                              NetworkImage(pessoaControler.people.imgProfile))),
+                ),
+              ),
             ),
-            const SizedBox(height: 100),
+            const SizedBox(height: 40),
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
               child: Row(

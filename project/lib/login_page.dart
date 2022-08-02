@@ -26,9 +26,17 @@ class LoginPage extends HookConsumerWidget {
           children: [
             const SizedBox(height: 20),
             CircleAvatar(
-              radius: 70,
-              child: Image.network(pessoaControler.people.imgProfile,
-                  fit: BoxFit.contain),
+              radius: 80,
+              child: Center(
+                child: Container(
+                  decoration: BoxDecoration(
+                      shape: BoxShape.circle,
+                      image: DecorationImage(
+                          fit: BoxFit.fill,
+                          image:
+                              NetworkImage(pessoaControler.people.imgProfile))),
+                ),
+              ),
             ),
             Padding(
               padding: EdgeInsets.all(20.0),
@@ -46,8 +54,6 @@ class LoginPage extends HookConsumerWidget {
               onPressed: () {
                 pessoaControler.people.nome = _controlerName.text;
                 pessoaControler.people.idade = int.parse(_controlerIdade.text);
-
-                print(pessoaControler.people.idade);
 
                 Navigator.of(context).push(MaterialPageRoute(
                   builder: ((context) => HomePage()),
